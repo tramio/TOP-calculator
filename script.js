@@ -37,3 +37,15 @@ function operate(operator, a, b) {
     }
     return result;
 }
+
+(function createButtons() {
+    let buttonsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "×", "÷", "=", "clear"];
+    for (i = 0; i < buttonsArray.length; i++) {
+        const newButton = document.createElement("button");
+        newButton.classList.add("buttons");
+        newButton.setAttribute("id", `btn${buttonsArray[i]}`)
+        newButton.textContent = buttonsArray[i];
+        const calculatorBody = document.querySelector(".calculatorBody");
+        calculatorBody.appendChild(newButton);
+    }
+})()
