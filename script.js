@@ -1,19 +1,39 @@
+let result = "";
+
 function add(a, b) {
-    let sum = a + b;
-    return sum;
+    return result = a + b;
 }
 
 function substract(a, b) {
-    let difference = a - b;
-    return difference;
+    return result = a - b;
 }
 
 function multiply(a, b) {
-    let product = a * b;
-    return product;
+    return result = a * b;
 }
 
 function divide(a, b) {
-    let quotient = a / b;
-    return quotient;
+    return result = a / b;
+}
+
+function operate(operator, a, b) {
+    a = parseInt(a);
+    b = parseInt(b);
+    switch (operator) {
+        case "+":
+            add(a, b);
+            break;
+        case "-":
+            substract(a, b);
+            break;
+        case "*":
+            multiply(a, b);
+            break;
+        case "/":
+            divide(a, b);
+            break;
+        default:
+            break;
+    }
+    return result;
 }
