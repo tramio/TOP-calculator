@@ -55,11 +55,11 @@ function operate(operator, a, b) {
 let btnArray = Array.from(document.querySelectorAll(".buttons"));
 
 (function displayNumbers() {
-    let displayValue = document.getElementById("displayValue");
+    let mainDisplay = document.getElementById("mainDisplay");
     btnArray
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
-            button.addEventListener("click", () => displayValue.textContent += button.textContent);
+            button.addEventListener("click", () => mainDisplay.textContent += button.textContent);
         });
 })();
 
@@ -70,10 +70,10 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
         .filter(button => (button.value).match(/[\+\-\×\÷]/))
         .forEach(button => {
             button.addEventListener("click", () => {
-                a = displayValue.textContent;
+                a = mainDisplay.textContent;
                 operator = button.value;
                 smallerDisplay.textContent = `${a} ${operator}`;
-                displayValue.textContent = "";
+                mainDisplay.textContent = "";
             });
         });
 })();
@@ -81,11 +81,21 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
 (function runOperation() {
     const equalButton = document.getElementById("btn=");
     equalButton.addEventListener("click", () => {
-        b = displayValue.textContent;
+        b = mainDisplay.textContent;
         operate(operator, a, b);
         smallerDisplay.textContent += ` ${b} =`;
-        displayValue.textContent = result;
+        mainDisplay.textContent = result;
     });
 })();
 
-// If the next button pressed is a number, reset displayValue and go back to step 1. Else, go back to step 2.
+// If the next button pressed is a number, reset mainDisplay and go back to step 1. Else, go back to step 2.
+
+const clearButton = document.getElementById("btnclear");
+clearButton.addEventListener("click", () => {
+    a = "";
+    b = "";
+    operator = "";
+    result = "";
+    smallerDisplay.textContent = "";
+    mainDisplay.textContent = "";
+});
