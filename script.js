@@ -1,4 +1,5 @@
 let result = "";
+let operator = "";
 
 function add(a, b) {
     return result = a + b;
@@ -26,10 +27,10 @@ function operate(operator, a, b) {
         case "-":
             substract(a, b);
             break;
-        case "*":
+        case "×":
             multiply(a, b);
             break;
-        case "/":
+        case "÷":
             divide(a, b);
             break;
         default:
@@ -51,12 +52,36 @@ function operate(operator, a, b) {
     }
 })();
 
+let btnArray = Array.from(document.querySelectorAll(".buttons"));
+
 (function displayNumbers() {
     let displayValue = document.getElementById("displayValue");
-    let btnArray = Array.from(document.querySelectorAll(".buttons"));
-    let filteredArray = btnArray
+    btnArray
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
             button.addEventListener("click", () => displayValue.textContent += button.textContent);
         });
 })();
+
+(function getOperation() {
+    btnArray
+        .filter(button => (button.value).match(/[\+\-\×\÷]/))
+        .forEach(button => {
+            button.addEventListener("click", () => {
+                a = displayValue.textContent;
+                operator = button.value;
+                displayValue.textContent = "";
+            });
+        });
+})();
+
+(function runOperation() {
+    const equalButton = document.getElementById("btn=");
+    equalButton.addEventListener("click", () => {
+        b = displayValue.textContent;
+        operate(operator, a, b);
+        displayValue.textContent = result;
+    });
+})();
+
+// If the next button pressed is a number, reset displayValue and go back to step 1. Else, go back to step 2.
