@@ -63,6 +63,8 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
         });
 })();
 
+const smallerDisplay = document.querySelector(".smallerDisplay");
+
 (function getOperation() {
     btnArray
         .filter(button => (button.value).match(/[\+\-\×\÷]/))
@@ -70,6 +72,7 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
             button.addEventListener("click", () => {
                 a = displayValue.textContent;
                 operator = button.value;
+                smallerDisplay.textContent = `${a} ${operator}`;
                 displayValue.textContent = "";
             });
         });
@@ -80,6 +83,7 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
     equalButton.addEventListener("click", () => {
         b = displayValue.textContent;
         operate(operator, a, b);
+        smallerDisplay.textContent += ` ${b} =`;
         displayValue.textContent = result;
     });
 })();
