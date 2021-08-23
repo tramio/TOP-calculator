@@ -43,9 +43,20 @@ function operate(operator, a, b) {
     for (i = 0; i < buttonsArray.length; i++) {
         const newButton = document.createElement("button");
         newButton.classList.add("buttons");
-        newButton.setAttribute("id", `btn${buttonsArray[i]}`)
+        newButton.setAttribute("id", `btn${buttonsArray[i]}`);
+        newButton.setAttribute("value", buttonsArray[i]);
         newButton.textContent = buttonsArray[i];
         const calculatorBody = document.querySelector(".calculatorBody");
         calculatorBody.appendChild(newButton);
     }
-})()
+})();
+
+(function displayNumbers() {
+    let displayValue = document.getElementById("displayValue");
+    let btnArray = Array.from(document.querySelectorAll(".buttons"));
+    let filteredArray = btnArray
+        .filter(button => button.value >= 0 && button.value <= 9)
+        .forEach(button => {
+            button.addEventListener("click", () => displayValue.textContent += button.textContent);
+        });
+})();

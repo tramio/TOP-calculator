@@ -23,14 +23,15 @@ body {
 .displayField {
     background-color: rgb(154, 161, 167);
     width: auto;
-    height: auto;
+    height: 1em;
     margin: 40px 15px;
     padding: 0.3em;
     box-shadow: inset 0px 0px 5px 0px rgba(32, 48, 94, 1);
     font-family: 'Chakra Petch', sans-serif;
     font-size: 2em;
     color: rgb(70, 70, 70);
-    text-align: right;
+    direction: rtl;
+    overflow: clip;
 }
 
 .buttons {
