@@ -56,10 +56,14 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
 
 (function displayNumbers() {
     let mainDisplay = document.getElementById("mainDisplay");
+    mainDisplay.textContent = 0;
     btnArray
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
-            button.addEventListener("click", () => mainDisplay.textContent += button.textContent);
+            button.addEventListener("click", () =>
+            mainDisplay.textContent == 0 ?
+            mainDisplay.textContent = button.value :
+            mainDisplay.textContent += button.value);
         });
 })();
 
@@ -97,5 +101,5 @@ clearButton.addEventListener("click", () => {
     operator = "";
     result = "";
     smallerDisplay.textContent = "";
-    mainDisplay.textContent = "";
+    mainDisplay.textContent = 0;
 });
