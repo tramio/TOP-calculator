@@ -1,5 +1,7 @@
 let result = "";
 let operator = "";
+let a = "";
+let b = "";
 
 function add(a, b) {
     return result = a + b;
@@ -74,9 +76,8 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
         .filter(button => (button.value).match(/[\+\-\×\÷]/))
         .forEach(button => {
             button.addEventListener("click", () => {
-                if (typeof(a) !== "undefined" && typeof(operator) !== "undefined") {
-                    b = mainDisplay.textContent;
-                    operate(operator, a, b);
+                if (a !== "" && operator !== "" && b === "") {
+                    operate(operator, a, mainDisplay.textContent);
                     operator = button.value;
                     smallerDisplay.textContent = `${result} ${operator}`;
                     mainDisplay.textContent = "";
