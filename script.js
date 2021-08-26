@@ -2,6 +2,7 @@ let result = "";
 let operator = "";
 let a = "";
 let b = "";
+let greatMessage;
 
 function add(a, b) {
     return result = a + b;
@@ -63,7 +64,7 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
             button.addEventListener("click", () =>
-            mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
+            mainDisplay.textContent == 0 || mainDisplay.textContent == result || mainDisplay.textContent == greatMessage ?
             mainDisplay.textContent = button.value :
             mainDisplay.textContent += button.value);
         });
@@ -76,7 +77,11 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
         .filter(button => (button.value).match(/[\+\-\×\÷]/))
         .forEach(button => {
             button.addEventListener("click", () => {
-                if (a !== "" && operator !== "" && b === "") {
+                if (mainDisplay.textContent == "" && operator == button.value && b === "") {
+                    greatMessage = "Gib number >:{";
+                    mainDisplay.textContent = greatMessage;
+                }
+                else if (a !== "" && operator !== "" && b === "") {
                     operate(operator, a, mainDisplay.textContent);
                     operator = button.value;
                     smallerDisplay.textContent = `${result} ${operator}`;
@@ -89,6 +94,7 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
                     smallerDisplay.textContent = `${a} ${operator}`;
                     mainDisplay.textContent = "";
                     b = "";
+                    result = "";
                 }
             });
         });
@@ -103,8 +109,6 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
         mainDisplay.textContent = result;
     });
 })();
-
-// If the next button pressed is a number, reset mainDisplay and go back to step 1. Else, go back to step 2.
 
 const clearButton = document.getElementById("btnclear");
 clearButton.addEventListener("click", () => {
