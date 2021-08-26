@@ -83,8 +83,15 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
                     mainDisplay.textContent = "";
                     a = result;
                 }
-                else if (a !== "" && operator !== "" && b !== "") {
+                else if (a !== "" && operator !== "" && b !== "" && mainDisplay.textContent == result) {
                     a = result;
+                    operator = button.value;
+                    smallerDisplay.textContent = `${a} ${operator}`;
+                    mainDisplay.textContent = "";
+                    b = "";
+                }
+                else if (a !== "" && operator !== "" && b !== "" && mainDisplay.textContent !== result) {
+                    a = mainDisplay.textContent;
                     operator = button.value;
                     smallerDisplay.textContent = `${a} ${operator}`;
                     mainDisplay.textContent = "";
