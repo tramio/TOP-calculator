@@ -20,8 +20,8 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = Number(a);
+    b = Number(b);
     switch (operator) {
         case "+":
             add(a, b);
@@ -38,7 +38,7 @@ function operate(operator, a, b) {
         default:
             break;
     }
-    result = +result.toFixed(12);
+    result = +result.toFixed(9);
     return result;
 }
 
