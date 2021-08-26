@@ -43,7 +43,7 @@ function operate(operator, a, b) {
 }
 
 (function createButtons() {
-    let buttonsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "+", "-", "×", "÷", "=", "clear"];
+    let buttonsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "+", "-", "×", "÷", "=", "clear", "erase"];
     for (i = 0; i < buttonsArray.length; i++) {
         const newButton = document.createElement("button");
         newButton.classList.add("buttons");
@@ -139,4 +139,14 @@ clearButton.addEventListener("click", () => {
     result = "";
     smallerDisplay.textContent = "";
     mainDisplay.textContent = 0;
+});
+
+const eraseButton = document.getElementById("btnerase");
+eraseButton.addEventListener("click", () => {
+    if (mainDisplay.textContent != result) {
+        mainDisplay.textContent = mainDisplay.textContent.slice(0, -1);
+        if (mainDisplay.textContent == "") {
+            mainDisplay.textContent = 0;
+        }
+    }
 });
