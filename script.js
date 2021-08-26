@@ -43,18 +43,18 @@ function operate(operator, a, b) {
 }
 
 (function createButtons() {
-    let buttonsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "+", "-", "×", "÷", "=", "clear", "erase"];
+    let buttonsArray = [7, 8, 9, "+", "-", 4, 5, 6, "×", "÷", 1, 2, 3, "=", "del", 0, ".", "clear"];
     for (i = 0; i < buttonsArray.length; i++) {
         const newButton = document.createElement("button");
         newButton.classList.add("buttons");
         newButton.setAttribute("id", `btn${buttonsArray[i]}`);
         newButton.setAttribute("value", buttonsArray[i]);
         newButton.textContent = buttonsArray[i];
-        const calculatorBody = document.querySelector(".calculatorBody");
-        calculatorBody.appendChild(newButton);
+        const buttonsField = document.querySelector(".buttons-field");
+        buttonsField.appendChild(newButton);
     }
 })();
-
+ 
 let btnArray = Array.from(document.querySelectorAll(".buttons"));
 
 (function displayNumbers() {
@@ -63,12 +63,14 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
     btnArray
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
-            button.addEventListener("click", () =>
-            mainDisplay.textContent === "0." || mainDisplay.textContent === `${result}.`?
-            mainDisplay.textContent += button.value :
-            mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
-            mainDisplay.textContent = button.value :
-            mainDisplay.textContent += button.value);
+            button
+                .addEventListener("click", () =>
+                mainDisplay.textContent === "0." || mainDisplay.textContent === `${result}.`?
+                mainDisplay.textContent += button.value :
+                mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
+                mainDisplay.textContent = button.value :
+                mainDisplay.textContent += button.value);
+            button.classList.add("number-buttons");
         });
 })();
 
@@ -129,6 +131,7 @@ function removeLastPoint() {
 
 (function runOperation() {
     const equalButton = document.getElementById("btn=");
+    equalButton.classList.add("em-buttons");
     equalButton.addEventListener("click", () => {
         if (mainDisplay.textContent == result) {operator = ""}
         else if (mainDisplay.textContent == "" || operator == "") {}
@@ -145,6 +148,7 @@ function removeLastPoint() {
 })();
 
 const clearButton = document.getElementById("btnclear");
+clearButton.classList.add("em-buttons");
 clearButton.addEventListener("click", () => {
     a = "";
     b = "";
@@ -154,8 +158,8 @@ clearButton.addEventListener("click", () => {
     mainDisplay.textContent = 0;
 });
 
-const eraseButton = document.getElementById("btnerase");
-eraseButton.addEventListener("click", () => {
+const delButton = document.getElementById("btndel");
+delButton.addEventListener("click", () => {
     if (mainDisplay.textContent != result) {
         mainDisplay.textContent = mainDisplay.textContent.slice(0, -1);
         if (mainDisplay.textContent == "") {
