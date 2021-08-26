@@ -66,7 +66,7 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
             button.addEventListener("click", () =>
             mainDisplay.textContent === "0." ?
             mainDisplay.textContent += button.value :
-            mainDisplay.textContent == 0 || mainDisplay.textContent === result ?
+            mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
             mainDisplay.textContent = button.value :
             mainDisplay.textContent += button.value);
         });
@@ -77,6 +77,9 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
     decimalButton.addEventListener("click", () => {
         if (!mainDisplay.textContent.includes(".")) {
             mainDisplay.textContent += decimalButton.value;
+        }
+        if (mainDisplay.textContent == "") {
+            mainDisplay.textContent = "0.";
         }
     });
 })();
@@ -105,6 +108,7 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
                     result = "";
                 }
                 else {
+                    removeLastPoint();
                     a = mainDisplay.textContent;
                     operator = button.value;
                     smallerDisplay.textContent = `${a} ${operator}`;
@@ -115,6 +119,13 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
             });
         });
 })();
+
+function removeLastPoint() {
+    if (mainDisplay.textContent.substring(mainDisplay.textContent.length-1) == ".") {
+        mainDisplay.textContent = mainDisplay.textContent.substring(0, mainDisplay.textContent.length-1);
+    }
+    return mainDisplay.textContent;
+};
 
 (function runOperation() {
     const equalButton = document.getElementById("btn=");
