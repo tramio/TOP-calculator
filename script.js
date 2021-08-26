@@ -108,7 +108,8 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
 (function runOperation() {
     const equalButton = document.getElementById("btn=");
     equalButton.addEventListener("click", () => {
-        if (mainDisplay.textContent == result) {}
+        if (mainDisplay.textContent == result) {operator = ""}
+        else if (mainDisplay.textContent == "" || operator == "") {}
         else if (mainDisplay.textContent == "0" && operator == "÷") {}
         else {
             b = mainDisplay.textContent;
