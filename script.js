@@ -43,7 +43,7 @@ function operate(operator, a, b) {
 }
 
 (function createButtons() {
-    let buttonsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "×", "÷", "=", "clear"];
+    let buttonsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "+", "-", "×", "÷", "=", "clear"];
     for (i = 0; i < buttonsArray.length; i++) {
         const newButton = document.createElement("button");
         newButton.classList.add("buttons");
@@ -64,10 +64,21 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
             button.addEventListener("click", () =>
-            mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
+            mainDisplay.textContent === "0." ?
+            mainDisplay.textContent += button.value :
+            mainDisplay.textContent == 0 || mainDisplay.textContent === result ?
             mainDisplay.textContent = button.value :
             mainDisplay.textContent += button.value);
         });
+})();
+
+(function displayDecimalPoint() {
+    const decimalButton = document.getElementById("btn.");
+    decimalButton.addEventListener("click", () => {
+        if (!mainDisplay.textContent.includes(".")) {
+            mainDisplay.textContent += decimalButton.value;
+        }
+    });
 })();
 
 const smallerDisplay = document.querySelector(".smallerDisplay");
