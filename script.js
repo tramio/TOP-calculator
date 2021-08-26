@@ -63,7 +63,7 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
             button.addEventListener("click", () =>
-            mainDisplay.textContent == 0 ?
+            mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
             mainDisplay.textContent = button.value :
             mainDisplay.textContent += button.value);
         });
@@ -82,6 +82,13 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
                     smallerDisplay.textContent = `${result} ${operator}`;
                     mainDisplay.textContent = "";
                     a = result;
+                }
+                else if (a !== "" && operator !== "" && b !== "") {
+                    a = result;
+                    operator = button.value;
+                    smallerDisplay.textContent = `${a} ${operator}`;
+                    mainDisplay.textContent = "";
+                    b = "";
                 }
                 else {
                     a = mainDisplay.textContent;
