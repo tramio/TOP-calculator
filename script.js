@@ -77,9 +77,11 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
         .filter(button => (button.value).match(/[\+\-\×\÷]/))
         .forEach(button => {
             button.addEventListener("click", () => {
-                if (mainDisplay.textContent == "" && operator == button.value && b === "") {
-                    greatMessage = "Gib number >:{";
-                    mainDisplay.textContent = greatMessage;
+                if (mainDisplay.textContent == "" && operator == button.value) {
+                }
+                else if (mainDisplay.textContent == "" && operator !== button.value) {
+                    operator = button.value;
+                    smallerDisplay.textContent = `${a} ${operator}`;
                 }
                 else if (a !== "" && operator !== "" && b === "") {
                     operate(operator, a, mainDisplay.textContent);
