@@ -38,6 +38,7 @@ function operate(operator, a, b) {
         default:
             break;
     }
+    result = +result.toFixed(12);
     return result;
 }
 
