@@ -2,7 +2,6 @@ let result = "";
 let operator = "";
 let a = "";
 let b = "";
-let greatMessage;
 
 function add(a, b) {
     return result = a + b;
@@ -64,7 +63,7 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
             button.addEventListener("click", () =>
-            mainDisplay.textContent == 0 || mainDisplay.textContent == result || mainDisplay.textContent == greatMessage ?
+            mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
             mainDisplay.textContent = button.value :
             mainDisplay.textContent += button.value);
         });
@@ -77,18 +76,21 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
         .filter(button => (button.value).match(/[\+\-\×\÷]/))
         .forEach(button => {
             button.addEventListener("click", () => {
-                if (mainDisplay.textContent == "" && operator == button.value) {
-                }
+                if (mainDisplay.textContent == "0" && operator == "÷") {}
+                else if (mainDisplay.textContent == "" && operator == button.value) {}
                 else if (mainDisplay.textContent == "" && operator !== button.value) {
                     operator = button.value;
                     smallerDisplay.textContent = `${a} ${operator}`;
                 }
                 else if (a !== "" && operator !== "" && b === "") {
-                    operate(operator, a, mainDisplay.textContent);
+                    b = mainDisplay.textContent;
+                    operate(operator, a, b);
                     operator = button.value;
                     smallerDisplay.textContent = `${result} ${operator}`;
                     mainDisplay.textContent = "";
                     a = result;
+                    b = "";
+                    result = "";
                 }
                 else {
                     a = mainDisplay.textContent;
@@ -106,6 +108,7 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
     const equalButton = document.getElementById("btn=");
     equalButton.addEventListener("click", () => {
         if (mainDisplay.textContent == result) {}
+        else if (mainDisplay.textContent == "0" && operator == "÷") {}
         else {
             b = mainDisplay.textContent;
             operate(operator, a, b);
