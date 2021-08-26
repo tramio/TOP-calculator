@@ -64,7 +64,7 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
         .filter(button => button.value >= 0 && button.value <= 9)
         .forEach(button => {
             button.addEventListener("click", () =>
-            mainDisplay.textContent === "0." ?
+            mainDisplay.textContent === "0." || mainDisplay.textContent === `${result}.`?
             mainDisplay.textContent += button.value :
             mainDisplay.textContent == 0 || mainDisplay.textContent == result ?
             mainDisplay.textContent = button.value :
@@ -75,11 +75,11 @@ let btnArray = Array.from(document.querySelectorAll(".buttons"));
 (function displayDecimalPoint() {
     const decimalButton = document.getElementById("btn.");
     decimalButton.addEventListener("click", () => {
-        if (!mainDisplay.textContent.includes(".")) {
-            mainDisplay.textContent += decimalButton.value;
-        }
         if (mainDisplay.textContent == "") {
             mainDisplay.textContent = "0.";
+        }
+        if (!mainDisplay.textContent.includes(".")) {
+            mainDisplay.textContent += decimalButton.value;
         }
     });
 })();
@@ -98,6 +98,7 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
                     smallerDisplay.textContent = `${a} ${operator}`;
                 }
                 else if (a !== "" && operator !== "" && b === "") {
+                    removeLastPoint();
                     b = mainDisplay.textContent;
                     operate(operator, a, b);
                     operator = button.value;
@@ -122,9 +123,8 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
 
 function removeLastPoint() {
     if (mainDisplay.textContent.substring(mainDisplay.textContent.length-1) == ".") {
-        mainDisplay.textContent = mainDisplay.textContent.substring(0, mainDisplay.textContent.length-1);
+        return mainDisplay.textContent = mainDisplay.textContent.substring(0, mainDisplay.textContent.length-1);
     }
-    return mainDisplay.textContent;
 };
 
 (function runOperation() {
@@ -134,10 +134,12 @@ function removeLastPoint() {
         else if (mainDisplay.textContent == "" || operator == "") {}
         else if (mainDisplay.textContent == "0" && operator == "÷") {}
         else {
+            removeLastPoint();
             b = mainDisplay.textContent;
             operate(operator, a, b);
             smallerDisplay.textContent += ` ${b} =`;
             mainDisplay.textContent = result;
+            operator = "";
         }
     });
 })();
