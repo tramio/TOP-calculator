@@ -105,10 +105,13 @@ const smallerDisplay = document.querySelector(".smallerDisplay");
 (function runOperation() {
     const equalButton = document.getElementById("btn=");
     equalButton.addEventListener("click", () => {
-        b = mainDisplay.textContent;
-        operate(operator, a, b);
-        smallerDisplay.textContent += ` ${b} =`;
-        mainDisplay.textContent = result;
+        if (mainDisplay.textContent == result) {}
+        else {
+            b = mainDisplay.textContent;
+            operate(operator, a, b);
+            smallerDisplay.textContent += ` ${b} =`;
+            mainDisplay.textContent = result;
+        }
     });
 })();
 
