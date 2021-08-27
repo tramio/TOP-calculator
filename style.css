@@ -1,21 +1,63 @@
 body {
+    width: auto;
+    height: auto;
+    background: rgb(53,92,125);
+    background: linear-gradient(90deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 35%, rgba(192,108,132,1) 60%, rgba(246,114,128,1) 74%, rgba(248,177,149,1) 90%);
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    color: rgb(241 226 255);
+}
+
+main {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: auto;
-    height: 100vh;
-    background: rgb(53,92,125);
-    background: linear-gradient(90deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 35%, rgba(192,108,132,1) 60%, rgba(246,114,128,1) 74%, rgba(248,177,149,1) 90%);
+    height: 90vh;
+}
+
+footer {
+    display: absolute;
+    height: 5vh;
+    text-align: center;
+}
+
+a:hover {
+    background-position: bottom 1px left 0;
+    background-size: 100% 2px;
+    color: rgb(241 226 255);
+}
+
+a:active {
+    color: rgb(241 226 255);
+}
+
+a {
+    background: rgb(131,51,201);
+    background: radial-gradient(circle, rgba(131,51,201,0.7) 0%, rgba(63,42,109,0.7) 100%);
+    background-position: bottom 0 left 0;
+    background-repeat: no-repeat;
+    background-size: 0% 0px;
+    padding-bottom: 3px;
+    transition: background-size .2s, background-position .15s, color .5s;
+    font-weight: 700;
+    text-decoration: none;
+    color: rgb(63 42 109);
 }
 
 .calculatorBody {
+    align-self: center;
     width: 300px;
     height: 400px;
-    background: rgba(53,92,125,1);
+    background: rgba(53, 92, 125, 0.8);
+    background-image: linear-gradient(222deg, rgb(44 68 88 / 50%) 0%, rgb(155 125 183 / 50%) 50%, rgb(174 161 185 / 70%) 95%);
     border-style: solid;
+    border-top: none;
+    border-left: none;
     border-color: rgba(32, 48, 94, 0.2);
-    border-width: medium;
+    border-width: thick;
     border-radius: 30px;
     box-shadow: 20px 20px 0px 10px rgba(248,177,149,0.3), 50px 50px 5px 10px rgba(32, 48, 94, 0.3);
 }
@@ -27,7 +69,7 @@ body {
     margin: 40px 15px;
     padding: 0.3em;
     box-shadow: inset 0px 0px 5px 0px rgba(32, 48, 94, 1);
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: "Chakra Petch", sans-serif;
     font-size: 2em;
     color: rgb(70, 70, 70);
     text-align: right;
@@ -36,6 +78,19 @@ body {
 
 .smallerDisplay {
     font-size: 0.4em;
+}
+
+.buttons-field {
+    display: grid;
+    grid-template-columns: repeat(3, 45px) 1fr 1fr;
+    grid-template-rows: repeat(4, 45px);
+    grid-gap: 10px;
+    margin: 15px;
+    height: auto;
+}
+
+.em-buttons {
+    grid-column: 4 / span 2;
 }
 
 .buttons:hover {
@@ -48,36 +103,19 @@ body {
     height: auto;
     background: inherit;
     background-image: linear-gradient(90deg, rgb(242 193 156) 0%, rgb(234 167 116 / 90%) 50%);
-    color: #fbfbfb;
+    color: #eef;
     border-radius: 5px;
     border-color: rgb(242 193 156);
-    font-family: "Karla", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 1em;
-}
-
-.buttons-field {
-    display: grid;
-    grid-template-columns: repeat(3, 45px) 1fr 1fr;
-    grid-template-rows: repeat(4, 45px);
-    grid-gap: 10px;
-    margin: 15px;
-    height: auto;
-    background: ;
-}
-
-.em-buttons {
-    grid-column: 4 / span 2;
+    font-size: 1.3em;
 }
 
 .number-buttons:hover {
-    background-image: none;
-    background-color: rgb(126 158 183);
+    background-color: rgb(88 151 190);
     border-color: rgb(106 131 156);
 }
 
 .number-buttons {
     background-color: inherit;
-    background-image: linear-gradient(90deg, rgb(123 149 170) 0%, rgb(110 135 164) 50%);
+    background-image: linear-gradient(90deg, rgb(123 149 170) 0%, rgb(88 151 190 / 70%) 50%);
     border-color: rgb(144 162 182);
 }
